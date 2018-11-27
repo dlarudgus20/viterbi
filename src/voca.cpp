@@ -36,9 +36,9 @@ void findIndexesByName(string name, vector<int> &indexes) {
     }
 }
 
-void readUnigram() {
+void readUnigram(const std::string& root) {
     ifstream in;
-    in.open("../data/unigram.txt", ios::in);
+    in.open(root + "unigram.txt", ios::in);
 
     string voca = "";
     double prob = 0;
@@ -60,9 +60,9 @@ void readUnigram() {
     in.close();
 }
 
-void readBigram() {
+void readBigram(const std::string& root) {
     ifstream in;
-    in.open("../data/bigram.txt", ios::in);
+    in.open(root + "bigram.txt", ios::in);
     string voca1 = "", voca2 = "";
     double prob = 0;
     vector<int> indexes1, indexes2;

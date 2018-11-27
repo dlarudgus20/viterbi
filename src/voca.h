@@ -22,8 +22,8 @@ extern int phoneIndex[N_VOCA][MAX_PHONES];
 extern double unigram[N_VOCA];
 extern double bigram[N_VOCA][N_VOCA];
 
-void readUnigram();
-void readBigram();
+void readUnigram(const std::string& root);
+void readBigram(const std::string& root);
 
 void initPhoneIndex();
 

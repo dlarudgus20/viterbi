@@ -35,8 +35,8 @@ string getRecName(string inputPath) {
     return '\"' + inputPath.replace(pos, 4, ".rec") + '\"';
 }
 
-void runAllTests() {
-    FILE *out = fopen("recognized.txt", "w");
+void runAllTests(const std::string& outPath) {
+    FILE *out = fopen(outPath.c_str(), "w");
 
     fprintf(out, "#!MLF!#\n");
 
@@ -67,10 +67,7 @@ void runAllTests() {
 
 int main(int argc, char* argv[])
 {
-    if (argc == 1) {
-        inputPrefix = "";
-    }
-    else if (argc == 2) {
+    if (argc == 4) {
         DIR *dp = opendir(argv[1]);
         if (dp == NULL) {
             cout << "Error(" << errno << ") opening " << argv[1] << endl;
@@ -83,16 +80,23 @@ int main(int argc, char* argv[])
             inputPrefix += "/";
         }
     }
+    else if (argc == 2) {
+        printf("print raw phone data to %s\n", argv[1]);
+        writePhoneHMM(argv[1]);
+        return 0;
+    }
     else {
         fprintf(stderr, "Usage: %s (data directory path)\n", argv[0]);
         return -1;
     }
 
-    initAllTransitions();
+    readPhoneHMM(argv[2]);
+
+    initAllTransitions(inputPrefix);
     listAllInputPaths(inputPrefix, inputPaths);
 
     printf("Input count: %u\n", (unsigned)inputPaths.size());
 
-    runAllTests();
+    runAllTests(argv[3]);
     return 0;
 }

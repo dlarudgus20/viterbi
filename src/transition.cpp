@@ -40,12 +40,12 @@ void applyLogScale() {
     }
 }
 
-void initAllTransitions() {
+void initAllTransitions(const std::string& root) {
     transitionType t;
 
     // read and initialize unigram, bigram, indexes of vocabulary phones.
-    readUnigram();
-    readBigram();
+    readUnigram(root);
+    readBigram(root);
     initPhoneIndex();
 
     t.toNextWord = false;

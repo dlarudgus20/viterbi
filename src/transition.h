@@ -26,6 +26,6 @@ extern vector<transitionType> beginningTransitions;
 extern vector<transitionType> transitions[N_VOCA][MAX_PHONES][N_STATE];
 
 // initialize and set beginningTransitions and transitions
-void initAllTransitions();
+void initAllTransitions(const std::string& root);
 
 #endif

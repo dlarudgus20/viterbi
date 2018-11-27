@@ -7,6 +7,7 @@
 #define N_DIMENSION	39
 
 #include <string>
+#include <array>
 
 using namespace std;
 
@@ -26,7 +27,10 @@ typedef struct {
   stateType state[N_STATE];
 } phoneType;
 
-extern phoneType phones[N_PHONE];
+extern std::array<phoneType, N_PHONE> phones;
+
+void readPhoneHMM(const std::string& path);
+void writePhoneHMM(const std::string& path);
 
 int getPhoneIndex(string name);
 int getNumberOfPhoneState(int index);
